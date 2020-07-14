@@ -1,11 +1,33 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
   <head>
     <meta charset="utf-8">
-    <title>First App</title>
+    <title>Django Level Two</title>
+    <link rel='stylesheet' href="{% static 'css/my_style.css' %}">
   </head>
   <body>
-    <h1>Hello this is index.html!</h1>
-    {{ insert_me }}
+    <h1>Hi welcome to Django Level Two</h1>
+    <h2>Here are your access records:</h2>
+    <div class="djangotwo">
+      {% if access_records %}
+        <table>
+          <thead>
+            <th>Site Name</th>
+            <th>Date Accessed</th>
+          </thead>
+          <tbody>
+            {% for access in access_records %}
+              <tr>
+                <td>{{ access.name }}</td>
+                <td>{{ access.date }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <p>No access records found</p>
+      {% endif %}
+    </div>
   </body>
 </html>
